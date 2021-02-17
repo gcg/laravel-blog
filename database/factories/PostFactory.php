@@ -30,6 +30,7 @@ class PostFactory extends Factory
             'image' => $this->faker->imageUrl(300, 300, 'animals'),
             'user_id' => 1,
             'body' => $this->faker->paragraphs(20, true),
+            'created_at' => $this->faker->dateTimeBetween('-1 year', '-1 week'),
         ];
     }
 }

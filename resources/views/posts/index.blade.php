@@ -4,49 +4,51 @@
 
 @section('content')
 
-    @foreach ($posts as $post)
 
-        <!-- This example requires Tailwind CSS v2.0+ -->
-        <div class="bg-white overflow-hidden shadow rounded-lg">
-            <div class="px-4 py-5 sm:p-6">
-                <!-- Content goes here -->
 
-                <!-- This example requires Tailwind CSS v2.0+ -->
-                <div class="sm:flex">
-                    <div class="mb-4 flex-shrink-0 sm:mb-0 sm:mr-4">
-                        <img src="{{ $post->image }}" alt="{{ $post->title }}" width="150" height="150" />
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-bold">
-                            <a href="/posts/view/{{$post->slug}}">
-                                {{ $post->title }}
-                            </a>
-                        </h4>
-                        <p class="mt-1">
-                        {{  \Illuminate\Support\Str::limit($post->body, 200) }}
-                        </p>
-                    </div>
-                </div>
 
-                <!-- This example requires Tailwind CSS v2.0+ -->
-                <div class="relative">
-                    <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                        <div class="w-full border-t border-gray-300"></div>
-                    </div>
-                    <div class="relative flex justify-center">
-                        <a href="/posts/view/{{$post->slug}}" type="button" class="inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            <!-- Heroicon name: solid/plus-sm -->
-                            <svg class="-ml-1.5 mr-1 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
-                            </svg>
-                            <span>Read More</span>
-                        </a>
-                    </div>
-                </div>
+    <!-- This example requires Tailwind CSS v2.0+ -->
+    <div class="relative bg-gray-50 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
+        <div class="absolute inset-0">
+            <div class="bg-white h-1/3 sm:h-2/3"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto">
+            <div class="text-center">
+                <h2 class="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl">
+                    From the blog
+                </h2>
+                <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
+                Read our posts:
+                </p>
             </div>
+            <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
+
+                @foreach ($posts as $post)
+
+                    @include('posts.post', ['post' => $post])
+
+                @endforeach
+
+            </div>
+
+
         </div>
 
-    @endforeach
+    </div>
+
+
+            <div class="relative">
+                <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div class="w-full border-t border-gray-300"></div>
+                </div>
+                <div class="relative flex justify-center">
+                    <span class="px-2 bg-white text-sm text-gray-500">
+                    </span>
+                </div>
+            </div>
+            {{ $posts->links() }}
+
+
 
 
 @endsection

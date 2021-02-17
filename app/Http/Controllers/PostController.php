@@ -9,7 +9,7 @@ class PostController extends Controller
 {
     public function index(Request $request): \Illuminate\View\View
     {
-        $posts = Post::latest()->get();
+        $posts = Post::latest()->paginate(6);
         return view('posts.index', ['posts' => $posts]);
     }
 
